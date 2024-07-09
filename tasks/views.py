@@ -25,7 +25,8 @@ def signup(request):
 
 @login_required
 def tasks(request):
-    tasks = Task.objects.filter(user=request.user)
+    #tasks = Task.objects.filter(user=request.user)
+    tasks = Task.objects.filter(user=request.user).order_by('id')
     active_tab = 'all'
     return render(request, 'tasks.html', {'tasks': tasks, 'active_tab': active_tab})
 
@@ -39,7 +40,7 @@ def tasks_pending(request):
 
 @login_required
 def tasks_completed(request):
-    tasks = Task.objects.filter(user=request.user, date_completed__isnull=True)
+    tasks = Task.objects.filter(user=request.user, date_completed__isnull=False)
     active_tab = 'completed'
     return render(request, 'tasks.html', {'tasks': tasks, 'active_tab': active_tab})
 
@@ -87,6 +88,7 @@ def tasks_new(request):
         if form.is_valid():
             new_task = form.save(commit=False)
             new_task.user = request.user
+            new_task.date_created = timezone.localtime()
             new_task.save()
             return redirect('tasks')
     else:
@@ -110,3 +112,9 @@ def signin(request):
     else:
         form = CustomAuthenticationForm()
     return render(request, 'login.html', {'form': form})
+
+
+
+
+
+

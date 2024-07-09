@@ -20,7 +20,7 @@
                         <a href="{% url 'tasks_delete' task.pk %}" class="btn btn-danger">Delete</a>
                         <a href="{% url 'tasks_complete' task.pk %}" class="btn btn-success">Complete</a>
                         {% endif %}
-                        <input type="submit" class="btn btn-primary float-end" value="{{action}}">
+                        <input type="submit" class="btn btn-primary float-end" value="{{ action }}">
                     </form>
                 </div>
             </div>

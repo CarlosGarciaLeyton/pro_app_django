@@ -24,13 +24,14 @@
             <th scope="col">#</th>
             <th scope="col">Title</th>
             <th scope="col">Description</th>
+             <th scope="col">Important</th>
             <th scope="col">Actions</th>
         </tr>
         </thead>
         <tbody>
         {% for task in tasks %}
         <tr>
-            <th scope="row">{{forloop.counter}}</th>
+            <th scope="row">{{ forloop.counter }}</th>
             <td>{{task.title}}</td>
             <td> {{task.description}}</td>
             <td> {{task.important}}</td>
